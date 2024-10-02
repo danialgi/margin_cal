@@ -52,6 +52,7 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
     return output
 
 df_oc = excel_file('OC Sales Order Enquiry')
+"Note: Make sure that 'Model' and 'Cost is in first sheet of the file'"
 df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
