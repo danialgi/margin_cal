@@ -33,17 +33,17 @@ def excel_file(name):
     #df_cart.columns = df_cart.iloc[0]
     #df_cart = df_cart.drop([rows_to_take])
     
-    df_cart['Order ID'] = df_cart['Order ID'].ffill()
-    df_cart['Date Added'] = df_cart['Date Added'].ffill()
-    if 'Order Source' in df_cart.columns:
-        df_cart['Order Source'] = df_cart['Order Source'].ffill()
-    df_cart['Order Status'] = df_cart['Order Status'].ffill()
-    df_cart['Delivery Method'] = df_cart['Delivery Method'].ffill()
-    if 'Tracking' in df_cart.columns:
-        df_cart['Tracking'] = df_cart['Tracking'].ffill()
-    if 'Tracking No.' in df_cart.columns:
-        df_cart['Tracking No.'] = df_cart['Tracking No.'].ffill()
-    df_cart['Courier'] = df_cart['Courier'].ffill()
+    #df_cart['Order ID'] = df_cart['Order ID'].ffill()
+    #df_cart['Date Added'] = df_cart['Date Added'].ffill()
+    #if 'Order Source' in df_cart.columns:
+        #df_cart['Order Source'] = df_cart['Order Source'].ffill()
+    #df_cart['Order Status'] = df_cart['Order Status'].ffill()
+    #df_cart['Delivery Method'] = df_cart['Delivery Method'].ffill()
+    #if 'Tracking' in df_cart.columns:
+        #df_cart['Tracking'] = df_cart['Tracking'].ffill()
+    #if 'Tracking No.' in df_cart.columns:
+        #df_cart['Tracking No.'] = df_cart['Tracking No.'].ffill()
+    #df_cart['Courier'] = df_cart['Courier'].ffill()
 
     return df_cart
 
