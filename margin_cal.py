@@ -52,5 +52,6 @@ df_missing = df_merge[df_merge['Cost'].isna()]
 df_missing = df_missing['Model'].to_frame()
 df_missing = df_missing.drop_duplicates(subset='Model', keep='first')
 df_missing = df_missing.reset_index()
+df_missing = df_missing.drop(['index'], axis=1)
 df_missing 
 
