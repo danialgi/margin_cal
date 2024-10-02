@@ -37,6 +37,20 @@ def excel_file(name):
     "#"
     return df_cart
 
+def dfs_to_excel(df_list, sheet_list, name, current_datetime):
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        for dataframe, sheet in zip(df_list, sheet_list):
+            dataframe.to_excel(writer, sheet_name=sheet, index=False)
+    output.seek(0)
+    "#"
+    st.download_button(
+                    label=f"Export Data",
+                    data=output,
+                    file_name=f"Auto-bill_{partner}_{current_datetime}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    return output
+
 df_oc = excel_file('OC Sales Order Enquiry')
 df_cost = excel_file('Cost Excel File')
 
@@ -47,11 +61,13 @@ df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df
 df_merge
 
 "#"
-"Missing Model Cost(s)"
+"Missing Model Cost"
 df_missing = df_merge[df_merge['Cost'].isna()]
 df_missing = df_missing['Model'].to_frame()
 df_missing = df_missing.drop_duplicates(subset='Model', keep='first')
 df_missing = df_missing.reset_index()
 df_missing = df_missing.drop(['index'], axis=1)
 df_missing 
+
+dfs_to_excel([df_merge, df_missing ], ['Sales Order Details', 'Missing Model Cost'], 'Margin', current_datetime)
 
