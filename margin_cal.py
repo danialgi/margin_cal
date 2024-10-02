@@ -48,8 +48,7 @@ df_merge
 
 "#"
 "Missing Model Cost(s)"
-df_missing = df_merge[df_merge['Cost'] == None]
-df_missing 
+df_missing = df_merge[df_merge['Cost'].isna()]
 df_missing = df_missing['Model']
 df_missing 
 
