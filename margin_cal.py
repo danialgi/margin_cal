@@ -26,7 +26,7 @@ def excel_file(name):
     file = st.file_uploader(name,type=['xlsx'])
     if not file:
         st.stop()
-    df_cart = pd.read_excel(cart_file)
+    df_cart = pd.read_excel(file)
 
     #rows_to_take = second_column[second_column.iloc[:, 0] == "Marketplace Order No."].index[0]
     #df_cart = df_cart.iloc[rows_to_take:]
