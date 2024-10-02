@@ -28,10 +28,10 @@ def excel_file(name):
         st.stop()
     df_cart = pd.read_excel(file)
 
-    #rows_to_take = second_column[second_column.iloc[:, 0] == "Marketplace Order No."].index[0]
-    #df_cart = df_cart.iloc[rows_to_take:]
-    #df_cart.columns = df_cart.iloc[0]
-    #df_cart = df_cart.drop([rows_to_take])
+    rows_to_take = second_column[second_column.iloc[:, 0] == "Marketplace Order No."].index[0]
+    df_cart = df_cart.iloc[rows_to_take:]
+    df_cart.columns = df_cart.iloc[0]
+    df_cart = df_cart.drop([rows_to_take])
 
     #df_cart
     return df_cart
