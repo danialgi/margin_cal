@@ -40,8 +40,5 @@ def excel_file(name):
 df_oc = excel_file('OC Sales Order Enquiry')
 df_cost = excel_file('Cost Excel File')
 
-df_merge = pd.merge(df_oc , df_cost, on='Model', how='outer', indicator=True)
-df_both = df_merge[df_merge['_merge'] == 'both']
-df_left = df_merge[df_merge['_merge'] == 'left_only']
-
+df_merge = pd.merge(df_oc , df_cost, on='Model', how='left)
 df_merge
