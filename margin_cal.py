@@ -33,13 +33,9 @@ def excel_file(name):
     #df_cart.columns = df_cart.iloc[0]
     #df_cart = df_cart.drop([rows_to_take])
 
+    df_cart
     "#"
     return df_cart
 
 df_oc = excel_file('OC Sales Order Enquiry')
-df_oc
-
 df_cost = excel_file('Cost Excel File')
-df_cost
-
-    
