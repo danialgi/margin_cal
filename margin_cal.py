@@ -20,7 +20,7 @@ import math
 st.set_page_config(page_title="Margin Calulator", page_icon="🧮", layout="wide")
 st.write("🏢 Goh Office Supplies")
 st.title("Margin Calculator🧮")
-st.markdown("#")
+st.markdown("_________________________________________________________________")
 
 def excel_file(name):
     file = st.file_uploader(name,type=['xlsx'])
@@ -49,6 +49,7 @@ df_merge
 "#"
 "Missing Model Cost(s)"
 df_missing = df_merge[df_merge['Cost'] == None]
+df_missing 
 df_missing = df_missing['Model']
 df_missing 
 
