@@ -50,5 +50,6 @@ df_merge
 "Missing Model Cost(s)"
 df_missing = df_merge[df_merge['Cost'].isna()]
 df_missing = df_missing['Model']
+df_missing = df_missing.drop_duplicates(subset='Model', keep='first')
 df_missing 
 
