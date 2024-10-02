@@ -1,0 +1,9 @@
+pandas
+plotly
+openpyxl
+lxml
+numpy
+natsort
+xlsxwriter
+gspread
+oauth2client
