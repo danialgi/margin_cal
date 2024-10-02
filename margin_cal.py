@@ -52,9 +52,10 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
+"Note: Report Format must be 'Item Breakdown'"
 df_oc = excel_file('OC Sales Order Details')
 "#"
-"Note: Make sure that 'Model' and 'Cost' is in first sheet of the file"
+"Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
