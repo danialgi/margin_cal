@@ -17,9 +17,9 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import math
 
-st.set_page_config(page_title="Margin Calulator", page_icon="🧮", layout="wide")
+st.set_page_config(page_title="Margin Calulator", page_icon="🏢", layout="wide")
 st.write("🏢 Goh Office Supplies")
-st.title("Margin Calculator🧮")
+st.title("Margin Calculator")
 st.markdown("_________________________________________________________________")
 
 def excel_file(name):
@@ -50,9 +50,9 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
-df_oc = excel_file('OC Sales Order Enquiry')
+df_oc = excel_file('OC Sales Order Details')
 "#"
-"✍️Note: Make sure that 'Model' and 'Cost' is in first sheet of the file"
+"Note: Make sure that 'Model' and 'Cost' is in first sheet of the file"
 df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
