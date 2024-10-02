@@ -47,7 +47,7 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
     st.download_button(
                     label=f"Export Data",
                     data=output,
-                    file_name=f"Auto-bill_{partner}_{current_datetime}.xlsx",
+                    file_name=f"Auto-bill_{name}_{current_datetime}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
