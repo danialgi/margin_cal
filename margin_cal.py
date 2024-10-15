@@ -34,7 +34,8 @@ def excel_file(name):
         df_cart = df_cart.iloc[rows_to_take:]
         df_cart.columns = df_cart.iloc[0]
         df_cart = df_cart.drop([rows_to_take])
-
+        
+    df_cart ['Model'] = df_cart ['Model'].str.strip()
     #df_cart
     return df_cart
 
@@ -54,11 +55,9 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
 
 "Note: Report Format must be 'Item Breakdown'"
 df_oc = excel_file('OC Sales Order Details')
-df_oc ['Model'] = df_oc ['Model'].str.strip()
 "#"
 "Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 df_cost = excel_file('Cost Excel File')
-df_cost ['Model'] = df_cost ['Model'].str.strip()
 
 "________________________________________________________"
 "RESULTS: "
