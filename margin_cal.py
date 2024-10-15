@@ -35,7 +35,7 @@ def excel_file(name):
         df_cart.columns = df_cart.iloc[0]
         df_cart = df_cart.drop([rows_to_take])
         
-    df_cart ['Model'] = df_cart ['Model'].str.strip()
+    #df_cart ['Model'] = df_cart ['Model'].str.strip()
     #df_cart
     return df_cart
 
