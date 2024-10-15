@@ -62,7 +62,6 @@ df_cost = excel_file('Cost Excel File')
 "________________________________________________________"
 "RESULTS: "
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
-df_merge
 df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
 df_merge['Cost'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
 df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
