@@ -65,7 +65,7 @@ df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
 #df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
 #df_merge['Cost'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
 #df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-#df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
+df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
 df_merge
 
 "#"
