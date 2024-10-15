@@ -34,7 +34,8 @@ def excel_file(name):
         df_cart = df_cart.iloc[rows_to_take:]
         df_cart.columns = df_cart.iloc[0]
         df_cart = df_cart.drop([rows_to_take])
-        
+    
+    df_cart ['Model'] = df_cart ['Model'].str.strip()
     #df_cart
     return df_cart
 
@@ -60,10 +61,9 @@ df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
 "RESULTS: "
-df_oc ['Model'] = df_oc ['Model'].str.strip()
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
-df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-df_merge['Cost'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
+df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
 df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
 df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
 df_merge
