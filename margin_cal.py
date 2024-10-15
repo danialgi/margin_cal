@@ -49,7 +49,7 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
     st.download_button(
                     label=f"Export Data",
                     data=output,
-                    file_name=f"Auto-bill_{name}_{current_datetime}.xlsx",
+                    file_name=f"{name}_{current_datetime}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
@@ -74,5 +74,5 @@ df_missing = df_missing.reset_index()
 df_missing = df_missing.drop(['index'], axis=1)
 df_missing 
 
-dfs_to_excel([df_merge, df_missing ], ['Sales Order Details', 'Missing Model Cost'], 'Margin', current_datetime)
+dfs_to_excel([df_merge, df_missing ], ['Sales Order Details', 'Missing Model Cost'], 'Margin Calculator', current_datetime)
 
