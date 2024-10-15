@@ -61,8 +61,10 @@ df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
 "RESULTS: "
-#df_oc['Model'] = df_oc['Model'].str.strip()
+df_oc['Model'] = df_oc['Model'].str.strip()
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
+df_merge['Cost'].dtype
+df_merge['Quantity'].dtype
 df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
 df_merge
 
