@@ -53,7 +53,7 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
-"Note: Report Format must be 'Item Breakdown'"
+option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
 df_oc = excel_file('OC Sales Order Details')
 "#"
 "Note: Column 'Model' and 'Cost' should be on first sheet of the file"
@@ -62,11 +62,13 @@ df_cost = excel_file('Cost Excel File')
 "________________________________________________________"
 "RESULTS: "
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
-df_merge
-df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
-df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
-df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
+if option == "Item":
+    df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
+    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
+    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+    df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
+elif option == "Order":
+    "TESTING"
 df_merge
 
 "#"
