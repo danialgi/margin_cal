@@ -22,6 +22,10 @@ st.write("🏢 Goh Office Supplies")
 st.title("Margin Calculator")
 st.markdown("_________________________________________________________________")
 
+option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
+if option == None:
+    st.stop()
+
 def excel_file(name):
     file = st.file_uploader(name,type=['xlsx'])
     if not file:
@@ -53,10 +57,8 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
 
-option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
-"#"
 df_oc = excel_file('OC Sales Order Details')
-"#"
+#"#"
 "Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 df_cost = excel_file('Cost Excel File')
 
