@@ -65,18 +65,16 @@ df_cost = excel_file('Cost Excel File')
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
 df_merge_ori = df_merge
 
+df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
+df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
+
 if option == "Item":
     df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
-    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
-    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
     df_merge['New Margin'] = df_merge['Order Income By Item'] - df_merge['Cost x Quantity']
 
 elif option == "Order":
     df_merge['Order Income (RM)'] = pd.to_numeric(df_merge['Order Income (RM)'], errors='coerce')
-    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
-    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
 
     aggregation_logic = {'Cost': 'sum'}
     for col in df_merge.columns:
@@ -93,6 +91,7 @@ elif option == "Order":
     cols.remove("Quantity")
     cols.remove("Unit Price")
     cols.remove("Cost Price")
+    cols.remove("Unit Total")
     cols.remove("Cost")
     cols.remove('Cost x Quantity')
     cols.append('Cost x Quantity')
