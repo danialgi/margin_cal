@@ -80,8 +80,15 @@ elif option == "Order":
     df_merge = df_merge.groupby('Order ID').agg(aggregation_logic).reset_index()
 
     cols = df_merge.columns.tolist()
-    if "Cost" in cols:
-        cols.remove(("Cost", "Model"))
+    cols.remove("Model")
+    cols.remove("Product Name")
+    cols.remove("Category")
+    cols.remove("Manufacturer")
+    cols.remove("Is DBS Item?")
+    cols.remove("Quantity")
+    cols.remove("Unit Price")
+    cols.remove("Cost Price")
+    cols.remove("Cost")
     cols.append("Cost")
     df_merge = df_merge[cols]
 
