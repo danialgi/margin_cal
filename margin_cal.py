@@ -81,7 +81,7 @@ elif option == "Order":
 
     cols = df_merge.columns.tolist()
     if "Cost" in cols:
-        cols.remove("Cost")
+        cols.remove(("Cost", "Model"))
     cols.append("Cost")
     df_merge = df_merge[cols]
 
