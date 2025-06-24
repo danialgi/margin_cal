@@ -62,28 +62,44 @@ df_cost = excel_file('Cost Excel File')
 
 "________________________________________________________"
 
-"Results: "
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
 if option == "Item":
     df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
     df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
     df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
     df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
+
 elif option == "Order":
     aggregation_logic = {'Cost': 'sum'}
     for col in df_merge.columns:
         if col not in ['Order ID', 'Cost']:
             aggregation_logic[col] = 'first'
     df_merge = df_merge.groupby('Order ID').agg(aggregation_logic).reset_index()
+
+    cols = df_merge.columns.tolist()
+    if "Cost" in cols:
+        cols.remove("Cost")
+    cols.append("Cost")
+    df_merge = df_merge[cols]
+
+    df_merge['Order Income (RM)'] = pd.to_numeric(df_merge['Order Income (RM)'], errors='coerce')
+    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
+    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
+    df_merge['New Margin'] = df_merge['Order Income (RM)'] - (df_merge['Cost']*df_merge['Quantity'])
+
+"Results: "
 df_merge
 
-"#"
-"Missing Model Cost: "
 df_missing = df_merge[df_merge['Cost'].isna()]
 df_missing = df_missing['Model'].to_frame()
 df_missing = df_missing.drop_duplicates(subset='Model', keep='first')
 df_missing = df_missing.reset_index()
 df_missing = df_missing.drop(['index'], axis=1)
+
+"#"
+"Missing Model Cost: "
 df_missing 
 
 dfs_to_excel([df_merge, df_missing ], ['Sales Order Details', 'Missing Model Cost'], 'Margin Calculator', current_datetime)
