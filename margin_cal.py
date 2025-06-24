@@ -70,9 +70,14 @@ if option == "Item":
     df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
     df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
     df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
-    df_merge['New Margin'] = df_merge['Order Income By Item'] - (df_merge['Cost']*df_merge['Quantity'])
+    df_merge['New Margin'] = df_merge['Order Income By Item'] - df_merge['Cost x Quantity']
 
 elif option == "Order":
+    df_merge['Order Income (RM)'] = pd.to_numeric(df_merge['Order Income (RM)'], errors='coerce')
+    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
+    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
+    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
+
     aggregation_logic = {'Cost': 'sum'}
     for col in df_merge.columns:
         if col not in ['Order ID', 'Cost']:
@@ -89,14 +94,11 @@ elif option == "Order":
     cols.remove("Unit Price")
     cols.remove("Cost Price")
     cols.remove("Cost")
-    cols.append("Cost")
+    cols.remove('Cost x Quantity')
+    cols.append('Cost x Quantity')
     df_merge = df_merge[cols]
 
-    df_merge['Order Income (RM)'] = pd.to_numeric(df_merge['Order Income (RM)'], errors='coerce')
-    df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
-    df_merge['Quantity'] = pd.to_numeric(df_merge['Quantity'], errors='coerce')
-    df_merge['Cost x Quantity'] = df_merge['Cost'] * df_merge['Quantity']
-    df_merge['New Margin'] = df_merge['Order Income (RM)'] - (df_merge['Cost']*df_merge['Quantity'])
+    df_merge['New Margin'] = df_merge['Order Income (RM)'] - df_merge['Cost x Quantity']
 
 "Results: "
 df_merge
