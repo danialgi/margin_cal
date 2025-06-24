@@ -21,6 +21,7 @@ st.set_page_config(page_title="Margin Calulator", page_icon="🏢", layout="wide
 st.write("🏢 Goh Office Supplies")
 st.title("Margin Calculator")
 st.markdown("_________________________________________________________________")
+"#"
 
 option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
 if option == None:
@@ -58,11 +59,11 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
     return output
 
 df_oc = excel_file('OC Sales Order Details')
-#"#"
-"Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 df_cost = excel_file('Cost Excel File')
-
+"Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 "________________________________________________________"
+"#"
+
 "RESULTS: "
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
 if option == "Item":
