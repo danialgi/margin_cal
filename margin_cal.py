@@ -63,6 +63,8 @@ df_cost = excel_file('Cost Excel File')
 "________________________________________________________"
 
 df_merge = pd.merge(df_oc , df_cost, on='Model', how='left')
+df_merge_ori = df_merge
+
 if option == "Item":
     df_merge['Order Income By Item'] = pd.to_numeric(df_merge['Order Income By Item'], errors='coerce')
     df_merge['Cost'] = pd.to_numeric(df_merge['Cost'], errors='coerce')
@@ -92,7 +94,7 @@ elif option == "Order":
 "Results: "
 df_merge
 
-df_missing = df_merge[df_merge['Cost'].isna()]
+df_missing = df_merge_ori[df_merge_ori['Cost'].isna()]
 df_missing = df_missing['Model'].to_frame()
 df_missing = df_missing.drop_duplicates(subset='Model', keep='first')
 df_missing = df_missing.reset_index()
