@@ -22,14 +22,6 @@ st.write("🏢 Goh Office Supplies")
 st.title("Margin Calculator")
 st.markdown("_________________________________________________________________")
 
-option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
-if option == None:
-    st.stop()
-
-df_oc = excel_file('OC Sales Order Details')
-df_cost = excel_file('Cost Excel File')
-"Note: Column 'Model' and 'Cost' should be on first sheet of the file"
-
 def excel_file(name):
     file = st.file_uploader(name,type=['xlsx'])
     if not file:
@@ -60,6 +52,13 @@ def dfs_to_excel(df_list, sheet_list, name, current_datetime):
                     file_name=f"{name}_{current_datetime}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return output
+
+option = st.selectbox("Breakdown Method:", ("Order", "Item"), index=None)
+if option == None:
+    st.stop()
+df_oc = excel_file('OC Sales Order Details')
+df_cost = excel_file('Cost Excel File')
+"Note: Column 'Model' and 'Cost' should be on first sheet of the file"
 
 "________________________________________________________"
 
